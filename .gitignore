@@ -1,8 +1,4 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
+
 .DS_Store
 .atom/
 .buildlog/
@@ -11,9 +7,6 @@
 migrate_working_dir/
 
 # IntelliJ related
-*.iml
-*.ipr
-*.iws
 .idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
@@ -21,17 +14,7 @@ migrate_working_dir/
 # is commented out by default.
 #.vscode/
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-/build/
-
+# Flutter/Dart/Pub relat
 # Symbolication related
 app.*.symbols
 
