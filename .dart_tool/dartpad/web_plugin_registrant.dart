@@ -3,6 +3,22 @@
 // Generated file. Do not edit.
 //
 
+// @dart = 2.13
 // ignore_for_file: type=lint
 
-void registerPlugins() {}
+import 'package:device_info_plus_web/device_info_plus_web.dart';
+import 'package:flutter_web_auth_2/src/flutter_web_auth_2_web.dart';
+import 'package:fluttertoast/fluttertoast_web.dart';
+import 'package:package_info_plus_web/package_info_plus_web.dart';
+import 'package:url_launcher_web/url_launcher_web.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+
+void registerPlugins([final Registrar? pluginRegistrar]) {
+  final Registrar registrar = pluginRegistrar ?? webPluginRegistrar;
+  DeviceInfoPlusPlugin.registerWith(registrar);
+  FlutterWebAuth2Plugin.registerWith(registrar);
+  FluttertoastWebPlugin.registerWith(registrar);
+  PackageInfoPlugin.registerWith(registrar);
+  UrlLauncherPlugin.registerWith(registrar);
+  registrar.registerMessageHandler();
+}
