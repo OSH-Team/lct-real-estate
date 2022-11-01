@@ -23,7 +23,7 @@ class AuthPage extends StatelessWidget {
             controller: controller,
             scrollDirection: Axis.horizontal,
             physics: const NeverScrollableScrollPhysics(),
-            children: [LoginPage(controller),RegisterPage(controller)],
+            children: [LoginPage(controller,account),RegisterPage(controller,account)],
           ),
         )
       ),

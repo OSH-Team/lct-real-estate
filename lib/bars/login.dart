@@ -7,7 +7,7 @@ import 'package:crypto/crypto.dart';
 import '../main.dart';
 import '../pages/auth.dart';
 class LoginPage extends StatelessWidget {
-  LoginPage(PageController pageController, {Key? key}) : super(key: key);
+  LoginPage(PageController pageController, Account account, {Key? key}) : super(key: key);
   String _PASSWORD = "";
   String _EMAIL = "";
   @override
@@ -55,7 +55,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    alignment: Alignment.bottomCenter,
+                    margin: EdgeInsets.symmetric(horizontal: 110),
                     child: Row(
                         children: [
                           TextButton(
@@ -87,9 +87,9 @@ class LoginPage extends StatelessWidget {
                                     email: _EMAIL,
                                     password: sha256.convert(utf8.encode(_PASSWORD))
                                         .toString()
-                                ).catchError((error) {
-                                });
+                                );
                                 if (user != null) {
+                                  Navigator.pushNamedAndRemoveUntil(context, "/mainpage", (route) => false);
                                 }
                               },
                               child: const Text("Log in")

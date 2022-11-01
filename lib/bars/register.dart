@@ -7,7 +7,7 @@ import 'package:crypto/crypto.dart';
 import '../main.dart';
 import '../pages/auth.dart';
 class RegisterPage extends StatelessWidget {
-  RegisterPage(PageController controller, {Key? key}) : super(key: key);
+  RegisterPage(PageController controller, Account account, {Key? key}) : super(key: key);
   String _LOGIN = "";
   String _PASSWORD = "";
   String _EMAIL = "";
@@ -83,13 +83,15 @@ class RegisterPage extends StatelessWidget {
                             borderRadius: BorderRadius.all(Radius.circular(2.0)),
                           )),
                       onPressed: () async {
-                        final user = await account.createEmailSession(
+                        final user = await account.create(
+                            userId: _LOGIN,
+                            name: _LOGIN,
                             email: _EMAIL,
                             password: sha256.convert(utf8.encode(_PASSWORD))
                                 .toString()
-                        ).catchError((error) {;
-                        });
+                        );
                         if (user != null) {
+
                         }
                       },
                       child: const Text("Войти в аккаунт")

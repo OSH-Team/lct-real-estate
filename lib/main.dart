@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:osh_main_build/pages/auth.dart';
+import 'package:osh_main_build/pages/mainpage.dart';
 //ку-ку ёпта
 Client client = Client()
     .setEndpoint('http://95.79.97.140/v1') // Your Appwrite Endpoint
@@ -19,6 +20,12 @@ class RightPrice extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Client client = Client();
+    Account account = Account(client);
+
+    client
+        .setEndpoint('http://95.79.97.140/v1') // Your API Endpoint
+        .setProject('RightPrice');
     return MaterialApp(
       title: 'osh',
       theme: ThemeData(
@@ -27,6 +34,7 @@ class RightPrice extends StatelessWidget {
       home: AuthPage(account),
       routes: {
         '/auth': (context) => AuthPage(account),
+        '/mainpage':(context) =>  MainPage()
       },
     );
   }
