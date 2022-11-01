@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 class AuthPage extends StatelessWidget {
   AuthPage(Account account, {Key? key}) : super(key: key);
-  final controller = PageController(
+  static PageController controller = PageController(
     initialPage: 0,
   );
 
@@ -17,10 +17,14 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: PageView(
-          controller: controller,
-          scrollDirection: Axis.horizontal,
-          children: [LoginPage(controller),RegisterPage(controller)],
+        child: Container(
+          alignment: Alignment.center,
+          child: PageView(
+            controller: controller,
+            scrollDirection: Axis.horizontal,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [LoginPage(controller),RegisterPage(controller)],
+          ),
         )
       ),
     );
