@@ -302,6 +302,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "sizer",
+      "rootUri": "file:///Users/andreypankov/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/sizer-1.1.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/andreypankov/Documents/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -428,7 +434,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-11-01T15:26:20.910654Z",
+  "generated": "2022-11-02T18:14:01.904492Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }

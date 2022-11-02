@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
+import 'package:sizer/sizer.dart';
 import 'package:osh_main_build/pages/auth.dart';
 import 'package:osh_main_build/pages/mainpage.dart';
 //ку-ку ёпта
@@ -15,27 +16,39 @@ void main() {
 }
 
 class RightPrice extends StatelessWidget {
-  const RightPrice({super.key});
+  const RightPrice({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Client client = Client();
-    Account account = Account(client);
-
-    client
-        .setEndpoint('http://95.79.97.140/v1') // Your API Endpoint
-        .setProject('RightPrice');
-    return MaterialApp(
-      title: 'osh',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: AuthPage(account),
-      routes: {
-        '/auth': (context) => AuthPage(account),
-        '/mainpage':(context) =>  MainPage()
-      },
+    return LayoutBuilder(
+        builder: (context, constraints){
+          return OrientationBuilder(
+              builder: (context, orientation){
+                SizerUtil().init(constraints, orientation);
+                client
+                    .setEndpoint('http://95.79.97.140/v1') // Your API Endpoint
+                    .setProject('RightPrice');
+                return MaterialApp(
+                  home: AuthPage(account),
+                  routes: {
+                    '/auth': (context) => AuthPage(account),
+                    '/mainpage':(context) =>  const MainPage()
+                  },
+                );
+              }
+          );
+        }
     );
   }
 }
+
+
+
+
+/* routes: {
+          '/auth': (context) => AuthPage(account),
+          '/mainpage':(context) =>  MainPage()
+        },
+        client
+        .setEndpoint('http://95.79.97.140/v1') // Your API Endpoint
+        .setProject('RightPrice');*/

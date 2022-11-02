@@ -4,6 +4,7 @@ import 'dart:js';
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
+import 'package:sizer/sizer.dart';
 import '../main.dart';
 import '../pages/auth.dart';
 class LoginPage extends StatelessWidget {
@@ -13,36 +14,37 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 500,vertical: 250),
+        margin: EdgeInsets.symmetric(horizontal: 55.0.w, vertical: 18.0.h),
         child: Card(
           elevation: 10,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 4.0.w, vertical: 0.1.h),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top:30),
-                    child: const Text("RightPrice"),
+                  Container(
+                      height: 2.0.h,
+                      width: 25.0.w,
+                      margin: EdgeInsets.only(top: 2.0.h),
+                      child: Image.asset('logo.png')
                   ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 16),
-                      child: TextField(
-                        onChanged: (String val) {
-                          _EMAIL = val;
-                        },
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Email',
-                        ),
-                      )
+                  Container(
+                    margin: EdgeInsets.only(top: 2.0.h),
+                    child: TextField(
+                      onChanged: (String val) {
+                        _EMAIL = val;
+                      },
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Email',
+                      ),
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  Container(
+                    margin: EdgeInsets.only(top: 2.0.h),
                     child: TextField(
                       obscureText: true,
                       decoration: const InputDecoration(
@@ -55,14 +57,13 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 110),
+                    margin: EdgeInsets.only(top: 1.0.h, left: 14.9.w, right: 14.9.w),
                     child: Row(
                         children: [
                           TextButton(
                               style: TextButton.styleFrom(
                                   primary: Colors.black87,
-                                  minimumSize: const Size(88, 36),
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                  minimumSize: const Size(20, 30),
                                   shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(2.0)),
                                   )),
@@ -77,8 +78,8 @@ class LoginPage extends StatelessWidget {
                           TextButton(
                               style: TextButton.styleFrom(
                                   primary: Colors.black87,
-                                  minimumSize: const Size(88, 36),
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                  backgroundColor: Color(0xACACAC),
+                                  minimumSize: const Size(20, 30),
                                   shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(2.0)),
                                   )),
