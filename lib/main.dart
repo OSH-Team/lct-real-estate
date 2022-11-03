@@ -3,7 +3,6 @@ import 'package:appwrite/appwrite.dart';
 import 'package:sizer/sizer.dart';
 import 'package:osh_main_build/pages/auth.dart';
 import 'package:osh_main_build/pages/mainpage.dart';
-//ку-ку ёпта
 Client client = Client()
     .setEndpoint('http://95.79.97.140/v1') // Your Appwrite Endpoint
     .setProject('RightPrice')         // Your project ID
