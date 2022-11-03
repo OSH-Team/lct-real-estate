@@ -5,8 +5,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Я дебил')
+    return Scaffold(
     );
   }
 }
