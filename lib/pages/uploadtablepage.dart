@@ -51,6 +51,34 @@ class _UploadTableState extends State<UploadTable> {
         }
       }
     }
+    _showExceptionDialog(context, tableFile!.names.first);
     return tableRows;
   }
+   Future<void> _showExceptionDialog(context, e) async {
+     return showDialog<void>(
+       context: context,
+       barrierDismissible: true,
+       builder: (BuildContext context) {
+         return AlertDialog(
+           title: const Text('Auth Error'),
+           content: SingleChildScrollView(
+             child: ListBody(
+               children: <Widget>[
+                 Text(e.toString()),
+               ],
+             ),
+           ),
+           actions: <Widget>[
+             TextButton(
+               child: const Text('OK'),
+               onPressed: () {
+                 Navigator.of(context).pop();
+               },
+             ),
+           ],
+         );
+       },
+     );
+   }
 }
+

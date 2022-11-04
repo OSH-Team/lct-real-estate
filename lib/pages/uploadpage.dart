@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:osh_main_build/pages/mainpage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:excel/excel.dart';
@@ -83,7 +84,9 @@ class _UploadPageState extends State<UploadPage> {
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                         )
                     ),
-                      onPressed: (){},
+                      onPressed: (){
+                        MainPage.controller.animateToPage(2, duration: Duration(milliseconds: 700), curve: Curves.easeIn);
+                      },
                       child: const Text("Import"),
                   )
                 ],
