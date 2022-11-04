@@ -34,6 +34,48 @@ class UploadPage extends StatelessWidget {
               ),
             ),
           ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black)
+            ),
+            margin: EdgeInsets.only(top: 34),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                      primary: Color.fromRGBO(217, 217, 217, 1),
+                      textStyle: const TextStyle(
+                        color: Color.fromRGBO(217, 217, 217, 1),
+                      ),
+                      backgroundColor: const Color.fromRGBO(172, 172, 172, 1),
+                      fixedSize: const Size(200, 57),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                      )
+                  ),
+                  child: const Text("Enter manually"),
+                  onPressed: (){},
+                ),
+                
+                TextButton(
+                  style: TextButton.styleFrom(
+                      primary: Color.fromRGBO(217, 217, 217, 1),
+                      textStyle: const TextStyle(
+                        color: Color.fromRGBO(217, 217, 217, 1),
+                      ),
+                      backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
+                      fixedSize: const Size(200, 57),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                      )
+                  ),
+                    onPressed: (){},
+                    child: const Text("Import"),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

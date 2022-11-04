@@ -77,7 +77,7 @@ class MainPage extends StatelessWidget {
                       color: const Color(0xD9D9D9D9)
                     ),
                     child: SizedBox(
-                      height: 600,
+                      height: 700,
                       child: PageView(
                         controller: controller,
                         scrollDirection: Axis.horizontal,
