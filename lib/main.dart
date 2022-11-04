@@ -27,7 +27,7 @@ class RightPrice extends StatelessWidget {
                     .setEndpoint('http://95.79.97.140/v1') // Your API Endpoint
                     .setProject('RightPrice');
                 return MaterialApp(
-                  home: AuthPage(account),
+                  home: MainPage(account),
                   routes: {
                     '/auth': (context) => AuthPage(account),
                     '/mainpage':(context) =>  MainPage(account)
