@@ -7,10 +7,12 @@ import 'package:crypto/crypto.dart';
 import '../main.dart';
 import '../pages/auth.dart';
 class RegisterPage extends StatelessWidget {
-  RegisterPage(PageController controller, Account account, {Key? key}) : super(key: key);
+  RegisterPage(PageController controller, Account account, {Key? key})
+      : super(key: key);
   String _LOGIN = "";
   String _PASSWORD = "";
   String _EMAIL = "";
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -24,7 +26,8 @@ class RegisterPage extends StatelessWidget {
             ),
             child: SingleChildScrollView(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 4.0.w, vertical: 0.1.h),
+                margin: EdgeInsets.symmetric(
+                    horizontal: 4.0.w, vertical: 0.1.h),
                 child: Column(
                   children: [
                     Container(
@@ -113,15 +116,18 @@ class RegisterPage extends StatelessWidget {
                             child: TextButton(
                                 style: TextButton.styleFrom(
                                     primary: Colors.black,
-                                    backgroundColor: const Color.fromRGBO(172, 172, 172, 1),
+                                    backgroundColor: const Color.fromRGBO(
+                                        172, 172, 172, 1),
                                     fixedSize: const Size(200, 57),
                                     shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30)),
                                     )
                                 ),
-                                onPressed: (){
+                                onPressed: () {
                                   AuthPage.controller.previousPage(
-                                      duration: const Duration(milliseconds: 700),
+                                      duration: const Duration(
+                                          milliseconds: 700),
                                       curve: Curves.easeIn);
                                 },
                                 child: const Text("Back")
@@ -135,22 +141,31 @@ class RegisterPage extends StatelessWidget {
                                     textStyle: const TextStyle(
                                         color: Color.fromRGBO(217, 217, 217, 1)
                                     ),
-                                    backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
+                                    backgroundColor: const Color.fromRGBO(
+                                        140, 28, 4, 1),
                                     fixedSize: const Size(200, 57),
                                     shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30)),
                                     )
                                 ),
                                 onPressed: () async {
-                                  final user = await account.create(
-                                      userId: _LOGIN,
-                                      name: _LOGIN,
-                                      email: _EMAIL,
-                                      password: sha256.convert(utf8.encode(_PASSWORD))
-                                          .toString()
-                                  );
-                                  if (user != null) {
-                                    Navigator.pushNamedAndRemoveUntil(context, "/mainpage", (route) => false);
+                                  try {
+                                    final user = await account.create(
+                                        userId: _LOGIN,
+                                        name: _LOGIN,
+                                        email: _EMAIL,
+                                        password: sha256.convert(
+                                            utf8.encode(_PASSWORD))
+                                            .toString()
+                                    );
+                                    if (user != null) {
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, "/mainpage", (
+                                          route) => false);
+                                    }
+                                  } on Exception catch (e) {
+                                    _showExceptionDialog(context, e);
                                   }
                                 },
                                 child: const Text("Register")
@@ -165,6 +180,33 @@ class RegisterPage extends StatelessWidget {
             ),
           )
       ),
+    );
+  }
+
+  Future<void> _showExceptionDialog(context, e) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Auth Error'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(e.toString()),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

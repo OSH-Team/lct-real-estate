@@ -121,13 +121,16 @@ class LoginPage extends StatelessWidget {
                                          )
                                       ),
                                   onPressed: () async {
-                                    final user = await account.createEmailSession(
-                                        email: _EMAIL,
-                                        password: sha256.convert(utf8.encode(_PASSWORD))
-                                            .toString()
-                                    );
-                                    if (user != null) {
-                                      Navigator.pushNamedAndRemoveUntil(context, "/mainpage", (route) => false);
+                                    try {
+                                      final user = await account.createEmailSession(
+                                          email: _EMAIL,
+                                          password: sha256.convert(utf8.encode(_PASSWORD))
+                                              .toString());
+                                      if (user != null) {
+                                        Navigator.pushNamedAndRemoveUntil(context, "/mainpage", (route) => false);
+                                      }
+                                    } on Exception catch (e) {
+                                      _showExceptionDialog(context, e);
                                     }
                                   },
                                   child: const Text("Log in")
@@ -142,6 +145,32 @@ class LoginPage extends StatelessWidget {
             ),
           )
       ),
+    );
+  }
+  Future<void> _showExceptionDialog(context, e) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Auth Error'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(e.toString()),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
