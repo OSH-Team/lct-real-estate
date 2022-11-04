@@ -90,7 +90,7 @@ class LoginPage extends StatelessWidget {
                               margin: EdgeInsets.only(right: 1.0.w),
                               child: TextButton(
                                   style: TextButton.styleFrom(
-                                      primary: Colors.white,
+                                      primary: Colors.black,
                                       backgroundColor: const Color.fromRGBO(172, 172, 172, 1),
                                       fixedSize: const Size(200, 57),
                                       shape: const RoundedRectangleBorder(
