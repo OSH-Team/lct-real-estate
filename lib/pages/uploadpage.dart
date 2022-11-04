@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:osh_main_build/pages/mainpage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:excel/excel.dart';
@@ -18,7 +19,9 @@ class UploadPage extends StatelessWidget {
                   type: FileType.custom,
                   allowedExtensions: ['xlsx'],
                   allowMultiple: false,
-                );
+                ).then((value){
+                  MainPage.table = value;
+                });
               },
               child: Container(
                 height: 451,
@@ -55,7 +58,9 @@ class UploadPage extends StatelessWidget {
                       )
                   ),
                   child: const Text("Enter manually"),
-                  onPressed: (){},
+                  onPressed: (){
+
+                  },
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
@@ -69,7 +74,9 @@ class UploadPage extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       )
                   ),
-                    onPressed: (){},
+                    onPressed: (){
+                      MainPage.controller.animateToPage(2, duration: Duration(microseconds: 500), curve: Curves.easeIn);
+                    },
                     child: const Text("Import"),
                 )
               ],
