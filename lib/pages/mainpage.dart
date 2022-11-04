@@ -1,14 +1,17 @@
 import 'dart:html';
 
 import 'package:appwrite/appwrite.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:osh_main_build/pages/historypage.dart';
 import 'package:osh_main_build/pages/uploadpage.dart';
+import 'package:osh_main_build/pages/uploadtablepage.dart';
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
   static PageController controller = PageController(
     initialPage: 0,
   );
+  static FilePickerResult? table;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,8 +86,9 @@ class MainPage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         physics: const NeverScrollableScrollPhysics(),
                         children:[
-                         UploadPage(),
-                         HistoryPage()
+                          UploadPage(),
+                          HistoryPage(),
+                          UploadTablePage(table)
                          ],
                       ),
                     ),
