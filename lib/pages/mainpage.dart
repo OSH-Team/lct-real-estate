@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
 import 'package:osh_main_build/pages/historypage.dart';
@@ -10,7 +12,20 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('title')),
+      appBar: AppBar(
+        title: const Text('RP'),
+        backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 40),
+            child: IconButton(
+                onPressed: (){},
+                icon: Image.asset('CircleContentPlace.png'),
+                iconSize: 40,
+            ),
+          )
+        ],
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -34,15 +49,48 @@ class MainPage extends StatelessWidget {
           ],
         ),
       ),
-      body: PageView(
-          controller: controller,
-          scrollDirection: Axis.horizontal,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-             UploadPage(),
-             HistoryPage()
-            ],
-       )
+      body: Column(
+              children:[
+                /*Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xE8E8E8E8),
+                    border: Border(
+                      bottom: BorderSide(color: Color(0x66666666)),
+                    ),
+                  ),
+
+                  child: Row(
+                      //mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                            onPressed: (){
+
+                            },
+                            iconSize: 30,
+                            icon: Icon(Icons.menu,),
+                        ),
+                      ],
+                  ),
+                ),*/
+                  Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xD9D9D9D9)
+                    ),
+                    child: SizedBox(
+                      height: 600,
+                      child: PageView(
+                        controller: controller,
+                        scrollDirection: Axis.horizontal,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children:[
+                         UploadPage(),
+                         HistoryPage()
+                         ],
+                      ),
+                    ),
+                  )
+              ],
+          )
     );
   }
 }
