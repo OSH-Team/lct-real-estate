@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'package:osh_main_build/main.dart';
 import 'package:sizer/sizer_ext.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:file_picker/file_picker.dart';
@@ -7,13 +8,14 @@ import 'package:osh_main_build/pages/historypage.dart';
 import 'package:osh_main_build/pages/uploadpage.dart';
 import 'package:osh_main_build/pages/uploadtablepage.dart';
 class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+  MainPage(Account account, {Key? key}) : super(key: key);
   static PageController controller = PageController(
     initialPage: 0,
   );
   static FilePickerResult? table;
   @override
   Widget build(BuildContext context) {
+    _checkAuth(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('RP'),
@@ -99,5 +101,14 @@ class MainPage extends StatelessWidget {
           )
       )
     );
+  }
+  _checkAuth(context) async{
+    try{
+      var res = await account.get();
+      print(res);
+    }catch(e){
+      print(e);
+      Navigator.pushNamedAndRemoveUntil(context, "/auth", (route) => false);
+    }
   }
 }

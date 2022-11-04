@@ -11,7 +11,6 @@ Account account = Account(client);
 
 void main() {
   runApp(const RightPrice());
-
 }
 
 class RightPrice extends StatelessWidget {
@@ -31,7 +30,7 @@ class RightPrice extends StatelessWidget {
                   home: AuthPage(account),
                   routes: {
                     '/auth': (context) => AuthPage(account),
-                    '/mainpage':(context) =>  const MainPage()
+                    '/mainpage':(context) =>  MainPage(account)
                   },
                 );
               }
