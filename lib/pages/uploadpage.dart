@@ -35,12 +35,12 @@ class UploadPage extends StatelessWidget {
             ),
           ),
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black)
-            ),
             margin: EdgeInsets.only(top: 34),
+            height: 56,
+            width: 722,
             child: Row(
-              mainAxisSize: MainAxisSize.min,
+              //mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
                   style: TextButton.styleFrom(
@@ -49,7 +49,7 @@ class UploadPage extends StatelessWidget {
                         color: Color.fromRGBO(217, 217, 217, 1),
                       ),
                       backgroundColor: const Color.fromRGBO(172, 172, 172, 1),
-                      fixedSize: const Size(200, 57),
+                      fixedSize: const Size(338, 56),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       )
@@ -57,7 +57,6 @@ class UploadPage extends StatelessWidget {
                   child: const Text("Enter manually"),
                   onPressed: (){},
                 ),
-                
                 TextButton(
                   style: TextButton.styleFrom(
                       primary: Color.fromRGBO(217, 217, 217, 1),
@@ -65,7 +64,7 @@ class UploadPage extends StatelessWidget {
                         color: Color.fromRGBO(217, 217, 217, 1),
                       ),
                       backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
-                      fixedSize: const Size(200, 57),
+                      fixedSize: const Size(338, 56),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       )
