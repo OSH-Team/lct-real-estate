@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:excel/excel.dart';
-class UploadPage extends StatelessWidget {
+class UploadPage extends StatefulWidget {
   UploadPage({Key? key}) : super(key: key);
+
+  @override
+  State<UploadPage> createState() => _UploadPageState();
+}
+
+class _UploadPageState extends State<UploadPage> {
   FilePickerResult? pickedFile;
+  String _text = 'uploadpage';
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -21,7 +28,11 @@ class UploadPage extends StatelessWidget {
                     type: FileType.custom,
                     allowedExtensions: ['xlsx'],
                     allowMultiple: false,
-                  );
+                  ).then((value){
+                    setState(() {
+                      _text = value!.names.first!;
+                    });
+                  });
                 },
                 child: Container(
                   height: 451,
@@ -32,9 +43,9 @@ class UploadPage extends StatelessWidget {
                     color: Color(0xACACACAC),
                   ),
                   child: Center(
-                      child: Text('uploadpage')
+                      child: Text(_text)
                   ),
-                ),
+                )
               ),
             ),
             Container(
@@ -84,3 +95,4 @@ class UploadPage extends StatelessWidget {
     );
   }
 }
+
