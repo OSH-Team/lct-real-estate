@@ -34,6 +34,8 @@ dependencies:
   appwrite: ^8.1.0
   fluttertoast: ^8.1.1
   sizer: ^1.1.6
+  http: ^0.13.5
+  html: ^0.15.1
 
 
 
