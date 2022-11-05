@@ -1,11 +1,19 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:osh_main_build/pages/mainpage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:excel/excel.dart';
-class UploadPage extends StatelessWidget {
+class UploadPage extends StatefulWidget {
   UploadPage({Key? key}) : super(key: key);
+
+  @override
+  State<UploadPage> createState() => _UploadPageState();
+}
+
+class _UploadPageState extends State<UploadPage> {
   FilePickerResult? pickedFile;
+  String _text = 'uploadpage';
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -21,7 +29,11 @@ class UploadPage extends StatelessWidget {
                     type: FileType.custom,
                     allowedExtensions: ['xlsx'],
                     allowMultiple: false,
-                  );
+                  ).then((value){
+                    setState(() {
+                      _text = value!.names.first!;
+                    });
+                  });
                 },
                 child: Container(
                   height: 451,
@@ -32,9 +44,9 @@ class UploadPage extends StatelessWidget {
                     color: Color(0xACACACAC),
                   ),
                   child: Center(
-                      child: Text('uploadpage')
+                      child: Text(_text)
                   ),
-                ),
+                )
               ),
             ),
             Container(
@@ -72,7 +84,9 @@ class UploadPage extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                         )
                     ),
-                      onPressed: (){},
+                      onPressed: (){
+                        MainPage.controller.animateToPage(2, duration: Duration(milliseconds: 700), curve: Curves.easeIn);
+                      },
                       child: const Text("Import"),
                   )
                 ],
@@ -85,3 +99,4 @@ class UploadPage extends StatelessWidget {
     );
   }
 }
+

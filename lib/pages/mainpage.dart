@@ -1,5 +1,5 @@
 import 'dart:html';
-
+import 'package:sizer/sizer_ext.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +53,7 @@ class MainPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
+       child: Column(
               children:[
                 /*Container(
                   decoration: BoxDecoration(
@@ -76,12 +76,12 @@ class MainPage extends StatelessWidget {
                       ],
                   ),
                 ),*/
-                  Container(
+                 Container(
                     decoration: BoxDecoration(
                       color: const Color(0xD9D9D9D9)
                     ),
-                    child: SizedBox(
-                      height: 700,
+                    child: Container(
+                      height: 1024,
                       child: PageView(
                         controller: controller,
                         scrollDirection: Axis.horizontal,
@@ -94,6 +94,7 @@ class MainPage extends StatelessWidget {
                       ),
                     ),
                   )
+
               ],
           )
       )
