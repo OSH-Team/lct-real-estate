@@ -12,12 +12,13 @@ class RegisterPage extends StatelessWidget {
   String _LOGIN = "";
   String _PASSWORD = "";
   String _EMAIL = "";
+  String _PASSWORDP ='';
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-          height: 469,
+          height: 550,
           width: 629,
           child: Card(
             elevation: 10,
@@ -82,7 +83,7 @@ class RegisterPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 2.0.h, bottom: 2.0.h),
+                      margin: EdgeInsets.only(top: 2.0.h),
                       child: TextField(
                         obscureText: true,
                         decoration: InputDecoration(
@@ -102,6 +103,30 @@ class RegisterPage extends StatelessWidget {
                         onChanged: (String val) {
                           _PASSWORD = val;
                         },
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 2.0.h, bottom: 2.0.h),
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          hintStyle: const TextStyle(
+                          ),
+                          fillColor: const Color(0xD9D9D9D9),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                              color: Color(0xb2b2b2b2),
+                              width: 1,
+                            ),
+                          ),
+                          hintText: 'Подтвердите пароль',
+                        ),
+                        onChanged: (String val) {
+                          _PASSWORDP = val;
+                          if (_PASSWORD != _PASSWORDP) {}
+                        }
                       ),
                     ),
                     Container(
