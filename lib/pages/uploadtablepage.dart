@@ -9,14 +9,18 @@ class UploadTablePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: UploadTable(tableFile),
+      child: UploadTable(),
     );
   }
 }
 class UploadTable extends StatefulWidget {
-  FilePickerResult? table;
-  UploadTable(this.table, {Key? key}) : super(key: key);
-
+  static FilePickerResult? table;
+  UploadTable({Key? key}) : super(key: key);
+  static void updateFile(file){
+    _UploadTableState(table).setState(() {
+      table == file;
+    });
+  }
   @override
   State<UploadTable> createState() => _UploadTableState(table);
 }
