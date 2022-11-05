@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:file_picker/file_picker.dart';
+import 'package:osh_main_build/global.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:osh_main_build/pages/mainpage.dart';
+import 'package:osh_main_build/pages/uploadtablepage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:excel/excel.dart';
@@ -15,7 +19,7 @@ class UploadPage extends StatefulWidget {
 }
 
 class _UploadPageState extends State<UploadPage> {
-  FilePickerResult? pickedFile;
+  var pickedFile;
   String _text = 'Перетащите вашу талицу в это поле';
 
   _UploadPageState(this.pickedFile);
@@ -30,13 +34,14 @@ class _UploadPageState extends State<UploadPage> {
             Container(
               child: InkWell(
                 onTap: () async {
-                  pickedFile = await FilePicker.platform.pickFiles(
+                  await FilePicker.platform.pickFiles(
                     type: FileType.custom,
                     allowedExtensions: ['xlsx'],
                     allowMultiple: false,
                   ).then((value){
                     setState(() {
-                      _text = value!.names.first!;
+                      globals.filePickerResult = value;
+                      _text = globals.filePickerResult!.names.first!;
                     });
                   });
                 },
@@ -94,7 +99,12 @@ class _UploadPageState extends State<UploadPage> {
                         )
                     ),
                       onPressed: (){
-                        CalcPage.controller.animateToPage(1, duration: Duration(milliseconds: 700), curve: Curves.easeIn);
+                        if(globals.filePickerResult == null){
+                          _showExceptionDialog(context, 'null');
+                        }
+                        CalcPage.controller.animateToPage(1, duration: Duration(milliseconds: 700), curve: Curves.easeIn)
+                            .then((value){
+                        });
                       },
                       child: const Text("Импортировать"),
                   )
@@ -105,6 +115,35 @@ class _UploadPageState extends State<UploadPage> {
         ),
       ),
       )
+    );
+  }
+  getFileTable(){
+    return pickedFile;
+  }
+  Future<void> _showExceptionDialog(context, e) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Auth Error'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(e.toString()),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
