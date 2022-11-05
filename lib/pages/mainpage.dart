@@ -58,7 +58,8 @@ class MainPage extends StatelessWidget {
                 onTap: (){
                   if(controller.position != 0){
                     controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-                  }
+                  };
+                  Navigator.pop(context);
                 },
               ),
               ListTile(
@@ -66,7 +67,8 @@ class MainPage extends StatelessWidget {
                 onTap: (){
                   if(controller.position != 1){
                     controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-                  }
+                  };
+                  Navigator.pop(context);
                 },
               )
             ],
