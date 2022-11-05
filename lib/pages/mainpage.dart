@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'package:osh_main_build/bars/login.dart';
 import 'package:osh_main_build/main.dart';
 import 'package:sizer/sizer_ext.dart';
 import 'package:appwrite/appwrite.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:osh_main_build/pages/historypage.dart';
 import 'package:osh_main_build/pages/uploadpage.dart';
 import 'package:osh_main_build/pages/uploadtablepage.dart';
+import 'package:osh_main_build/pages/auth.dart';
 
 import 'calcpage.dart';
 class MainPage extends StatefulWidget {
@@ -53,6 +55,7 @@ class _MainPageState extends State<MainPage> {
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
+
             children: [
               UserAccountsDrawerHeader(
                   accountName: Text(_AccountName!),
@@ -89,7 +92,15 @@ class _MainPageState extends State<MainPage> {
                   };
                   Navigator.pop(context);
                 },
+              ),
+              Divider(),
+              ListTile(
+                title: Text('Выйти'),
+                onTap: (){
+
+                },
               )
+
             ],
           ),
         ),
@@ -131,6 +142,7 @@ class _MainPageState extends State<MainPage> {
                       children:[
                         CalcPage(),
                         HistoryPage(),
+                        AuthPage(account),
                       ],
                     ),
                   ),
