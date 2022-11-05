@@ -97,7 +97,9 @@ class _MainPageState extends State<MainPage> {
               ListTile(
                 title: Text('Выйти'),
                 onTap: (){
-
+                    setState(() {
+                      account.deleteSessions();
+                    });
                 },
               )
 
@@ -141,8 +143,7 @@ class _MainPageState extends State<MainPage> {
                       physics: const NeverScrollableScrollPhysics(),
                       children:[
                         CalcPage(),
-                        HistoryPage(),
-                        AuthPage(account),
+                        HistoryPage()
                       ],
                     ),
                   ),
