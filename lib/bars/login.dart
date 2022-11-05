@@ -28,9 +28,6 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                        decoration: BoxDecoration(
-                          border: Border.all()
-                        ),
                         height: 61,
                         width: 256,
                         alignment: Alignment.center,
@@ -80,9 +77,6 @@ class LoginPage extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 8.0.w),
-                      decoration: BoxDecoration(
-                        border: Border.all()
-                      ),
                       child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
