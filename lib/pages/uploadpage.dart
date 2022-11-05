@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:osh_main_build/global.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:osh_main_build/pages/mainpage.dart';
 import 'package:osh_main_build/pages/uploadtablepage.dart';
@@ -39,8 +40,8 @@ class _UploadPageState extends State<UploadPage> {
                     allowMultiple: false,
                   ).then((value){
                     setState(() {
-                      pickedFile = value;
-                      _text = pickedFile!.names.first!;
+                      globals.filePickerResult = value;
+                      _text = globals.filePickerResult!.names.first!;
                     });
                   });
                 },
@@ -98,7 +99,7 @@ class _UploadPageState extends State<UploadPage> {
                         )
                     ),
                       onPressed: (){
-                        if(pickedFile == null){
+                        if(globals.filePickerResult == null){
                           _showExceptionDialog(context, 'null');
                         }
                         CalcPage.controller.animateToPage(1, duration: Duration(milliseconds: 700), curve: Curves.easeIn)

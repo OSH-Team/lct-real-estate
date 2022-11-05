@@ -6,14 +6,24 @@ import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import '../main.dart';
 import '../pages/auth.dart';
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   RegisterPage(PageController controller, Account account, {Key? key})
       : super(key: key);
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   String _LOGIN = "";
+
   String _PASSWORD = "";
+
   String _EMAIL = "";
+
   String _PASSWORDP ='';
 
+  Color _borderColor = Color(0xb2b2b2b2);
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -93,8 +103,8 @@ class RegisterPage extends StatelessWidget {
                           fillColor: const Color(0xD9D9D9D9),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                                color: Color(0xb2b2b2b2),
+                            borderSide: BorderSide(
+                                color: _borderColor,
                                 width: 1,
                             ),
                           ),
@@ -116,8 +126,8 @@ class RegisterPage extends StatelessWidget {
                           fillColor: const Color(0xD9D9D9D9),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                              color: Color(0xb2b2b2b2),
+                            borderSide: BorderSide(
+                              color: _borderColor,
                               width: 1,
                             ),
                           ),
@@ -125,7 +135,11 @@ class RegisterPage extends StatelessWidget {
                         ),
                         onChanged: (String val) {
                           _PASSWORDP = val;
-                          if (_PASSWORD != _PASSWORDP) {}
+                          if (_PASSWORD != _PASSWORDP) {
+                            setState(() {
+                              _borderColor == Color(0xFF8C1C04);
+                            });
+                          }
                         }
                       ),
                     ),

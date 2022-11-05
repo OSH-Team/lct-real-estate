@@ -1,4 +1,5 @@
 import 'package:excel/excel.dart';
+import 'package:osh_main_build/global.dart' as globals;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 class UploadTablePage extends StatelessWidget {
@@ -17,23 +18,23 @@ class UploadTable extends StatefulWidget {
   static FilePickerResult? table;
   UploadTable({Key? key}) : super(key: key);
   static void updateFile(file){
-    _UploadTableState(table).setState(() {
+    _UploadTableState().setState(() {
       table == file;
     });
   }
   @override
-  State<UploadTable> createState() => _UploadTableState(table);
+  State<UploadTable> createState() => _UploadTableState();
 }
 
 class _UploadTableState extends State<UploadTable> {
-   FilePickerResult? table;
-  _UploadTableState(this.table);
+   FilePickerResult? table = globals.filePickerResult;
   @override
   Widget build(BuildContext context) {
-    if(table == null){
-      return Text('NULL');
-    }else{
-      return Text(table!.names.first.toString());
+      return SingleChildScrollView(
+        child: Table(
+          children: _getTableRowsFromExcel(table),
+        ),
+      );
     }
   }
   List<TableRow> _getTableRowsFromExcel(FilePickerResult? tableFile){
@@ -53,7 +54,6 @@ class _UploadTableState extends State<UploadTable> {
         }
       }
     }
-    _showExceptionDialog(context, tableFile!.names.first);
     return tableRows;
   }
    Future<void> _showExceptionDialog(context, e) async {
@@ -82,5 +82,4 @@ class _UploadTableState extends State<UploadTable> {
        },
      );
    }
-}
 
