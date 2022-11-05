@@ -7,15 +7,32 @@ import 'package:flutter/material.dart';
 import 'package:osh_main_build/pages/historypage.dart';
 import 'package:osh_main_build/pages/uploadpage.dart';
 import 'package:osh_main_build/pages/uploadtablepage.dart';
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   MainPage(Account account, {Key? key}) : super(key: key);
   static PageController controller = PageController(
     initialPage: 0,
   );
   static FilePickerResult? table;
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  String? _AccountName = '';
+
+  String? _AccountEmail = '';
+
   @override
   Widget build(BuildContext context) {
     _checkAuth(context);
+    account.get().then((value){
+
+      setState(() {
+        _AccountEmail = value.email;
+        _AccountName = value.name;
+      });
+    });
     return Scaffold(
         appBar: AppBar(
           title: const Text('RightPrice'),
@@ -36,8 +53,8 @@ class MainPage extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: [
               UserAccountsDrawerHeader(
-                  accountName: Text('Gay'),
-                  accountEmail: Text('gay@gmail.com'),
+                  accountName: Text(_AccountName!),
+                  accountEmail: Text(_AccountEmail!),
                   currentAccountPicture: CircleAvatar(
                     backgroundColor: Colors.grey,
                     child: ClipOval(
@@ -56,8 +73,8 @@ class MainPage extends StatelessWidget {
               ListTile(
                 title: Text('Создать рассчет'),
                 onTap: (){
-                  if(controller.position != 0){
-                    controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                  if(MainPage.controller.position != 0){
+                    MainPage.controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
                   };
                   Navigator.pop(context);
                 },
@@ -65,8 +82,8 @@ class MainPage extends StatelessWidget {
               ListTile(
                 title: Text('История рассчетов'),
                 onTap: (){
-                  if(controller.position != 1){
-                    controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                  if(MainPage.controller.position != 1){
+                    MainPage.controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
                   };
                   Navigator.pop(context);
                 },
@@ -106,13 +123,13 @@ class MainPage extends StatelessWidget {
                   child: Container(
                     height: 760,
                     child: PageView(
-                      controller: controller,
+                      controller: MainPage.controller,
                       scrollDirection: Axis.horizontal,
                       physics: const NeverScrollableScrollPhysics(),
                       children:[
                         UploadPage(),
                         HistoryPage(),
-                        UploadTablePage(table),
+                        UploadTablePage(MainPage.table),
                       ],
                     ),
                   ),
@@ -123,6 +140,7 @@ class MainPage extends StatelessWidget {
         )
     );
   }
+
   _checkAuth(context) async{
     try{
       var res = await account.get();
