@@ -39,10 +39,19 @@ class MainPage extends StatelessWidget {
                   accountName: Text('Gay'),
                   accountEmail: Text('gay@gmail.com'),
                   currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.grey,
                     child: ClipOval(
-                      child: Image.asset('andrey.png'),
+                      child: Image.asset(
+                          'user.png',
+                        fit: BoxFit.cover,
+                        height: 50,
+                        width: 50,
+                      ),
                     ),
                   ),
+                decoration: const BoxDecoration(
+                  color: Color.fromRGBO(140, 28, 4, 1),
+                ),
               ),
               ListTile(
                 title: Text('Создать рассчет'),
