@@ -16,7 +16,7 @@ class UploadPage extends StatefulWidget {
 
 class _UploadPageState extends State<UploadPage> {
   FilePickerResult? pickedFile;
-  String _text = 'uploadpage';
+  String _text = 'Перетащите вашу талицу в это поле';
 
   _UploadPageState(this.pickedFile);
   @override
@@ -64,21 +64,25 @@ class _UploadPageState extends State<UploadPage> {
                 children: [
                   TextButton(
                     style: TextButton.styleFrom(
-                        primary: Color.fromRGBO(217, 217, 217, 1),
-                        textStyle: const TextStyle(
-                          color: Color.fromRGBO(217, 217, 217, 1),
+                        side: BorderSide(
+                            color: const Color.fromRGBO(102, 102, 102, 0.5)
                         ),
+                        primary: Colors.black,
                         backgroundColor: const Color.fromRGBO(172, 172, 172, 1),
                         fixedSize: const Size(338, 56),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                         )
                     ),
-                    child: const Text("Enter manually"),
+                    child: const Text("Ввести вручную"),
                     onPressed: (){},
+
                   ),
                   TextButton(
                     style: TextButton.styleFrom(
+                        side: BorderSide(
+                            color: const Color.fromRGBO(102, 102, 102, 0.5)
+                        ),
                         primary: Color.fromRGBO(217, 217, 217, 1),
                         textStyle: const TextStyle(
                           color: Color.fromRGBO(217, 217, 217, 1),
@@ -92,7 +96,7 @@ class _UploadPageState extends State<UploadPage> {
                       onPressed: (){
                         CalcPage.controller.animateToPage(1, duration: Duration(milliseconds: 700), curve: Curves.easeIn);
                       },
-                      child: const Text("Import"),
+                      child: const Text("Импортировать"),
                   )
                 ],
               ),

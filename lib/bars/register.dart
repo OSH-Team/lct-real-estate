@@ -31,9 +31,6 @@ class RegisterPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                        decoration: BoxDecoration(
-                            border: Border.all()
-                        ),
                         height: 61,
                         width: 256,
                         alignment: Alignment.center,
@@ -50,15 +47,15 @@ class RegisterPage extends StatelessWidget {
                           filled: true,
                           hintStyle: const TextStyle(
                           ),
-                          fillColor: const Color(0xD9D9D9),
+                          fillColor: const Color(0xD9D9D9D9),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                               borderSide: const BorderSide(
-                                  color: Color(0xb2b2b2),
+                                  color: Color(0xb2b2b2b2),
                                   width: 1
                               )
                           ),
-                          hintText: 'Логин',
+                          hintText: 'Имя',
                         ),
                       ),
                     ),
@@ -72,11 +69,11 @@ class RegisterPage extends StatelessWidget {
                           filled: true,
                           hintStyle: const TextStyle(
                           ),
-                          fillColor: const Color(0xD9D9D9),
+                          fillColor: const Color(0xD9D9D9D9),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                               borderSide: const BorderSide(
-                                  color: Color(0xb2b2b2),
+                                  color: Color(0xb2b2b2b2),
                                   width: 1
                               )
                           ),
@@ -92,9 +89,13 @@ class RegisterPage extends StatelessWidget {
                           filled: true,
                           hintStyle: const TextStyle(
                           ),
-                          fillColor: const Color(0xD9D9D9),
+                          fillColor: const Color(0xD9D9D9D9),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                color: Color(0xb2b2b2b2),
+                                width: 1,
+                            ),
                           ),
                           hintText: 'Пароль',
                         ),
@@ -105,9 +106,6 @@ class RegisterPage extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 8.0.w),
-                      decoration: BoxDecoration(
-                          border: Border.all()
-                      ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -115,9 +113,11 @@ class RegisterPage extends StatelessWidget {
                             margin: EdgeInsets.only(right: 1.0.w),
                             child: TextButton(
                                 style: TextButton.styleFrom(
+                                    side: BorderSide(
+                                        color: const Color.fromRGBO(102, 102, 102, 0.5)
+                                    ),
                                     primary: Colors.black,
-                                    backgroundColor: const Color.fromRGBO(
-                                        172, 172, 172, 1),
+                                    backgroundColor: const Color.fromRGBO(172, 172, 172, 1),
                                     fixedSize: const Size(200, 57),
                                     shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -130,19 +130,18 @@ class RegisterPage extends StatelessWidget {
                                           milliseconds: 700),
                                       curve: Curves.easeIn);
                                 },
-                                child: const Text("Back")
+                                child: const Text("Назад")
                             ),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 1.0.w),
                             child: TextButton(
                                 style: TextButton.styleFrom(
-                                    primary: Color.fromRGBO(217, 217, 217, 1),
-                                    textStyle: const TextStyle(
-                                        color: Color.fromRGBO(217, 217, 217, 1)
+                                    side: BorderSide(
+                                        color: const Color.fromRGBO(102, 102, 102, 0.5)
                                     ),
-                                    backgroundColor: const Color.fromRGBO(
-                                        140, 28, 4, 1),
+                                    primary: Color.fromRGBO(217, 217, 217, 1),
+                                    backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
                                     fixedSize: const Size(200, 57),
                                     shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -168,7 +167,7 @@ class RegisterPage extends StatelessWidget {
                                     _showExceptionDialog(context, e);
                                   }
                                 },
-                                child: const Text("Register")
+                                child: const Text("Зарегестрироваться")
                             ),
                           )
                         ],
