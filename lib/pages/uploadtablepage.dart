@@ -14,25 +14,23 @@ class UploadTablePage extends StatelessWidget {
   }
 }
 class UploadTable extends StatefulWidget {
-  FilePickerResult? tableFile;
-  UploadTable(table, {Key? key}) : super(key: key){
-    tableFile = table;
-  }
+  FilePickerResult? table;
+  UploadTable(this.table, {Key? key}) : super(key: key);
 
   @override
-  State<UploadTable> createState() => _UploadTableState(tableFile);
+  State<UploadTable> createState() => _UploadTableState(table);
 }
 
 class _UploadTableState extends State<UploadTable> {
-   FilePickerResult? tableFile;
-  _UploadTableState(table){
-    tableFile = table;
-  }
+   FilePickerResult? table;
+  _UploadTableState(this.table);
   @override
   Widget build(BuildContext context) {
-    return Table(
-        children: _getTableRowsFromExcel(tableFile),
-    );
+    if(table == null){
+      return Text('NULL');
+    }else{
+      return Text(table!.names.first.toString());
+    }
   }
   List<TableRow> _getTableRowsFromExcel(FilePickerResult? tableFile){
     List<TableRow> tableRows = [];

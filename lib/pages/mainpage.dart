@@ -7,11 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:osh_main_build/pages/historypage.dart';
 import 'package:osh_main_build/pages/uploadpage.dart';
 import 'package:osh_main_build/pages/uploadtablepage.dart';
+
+import 'calcpage.dart';
 class MainPage extends StatefulWidget {
   MainPage(Account account, {Key? key}) : super(key: key);
-  static PageController controller = PageController(
-    initialPage: 0,
-  );
   static FilePickerResult? table;
 
   @override
@@ -19,6 +18,9 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  PageController controller = PageController(
+    initialPage: 0,
+  );
   String? _AccountName = '';
 
   String? _AccountEmail = '';
@@ -73,8 +75,8 @@ class _MainPageState extends State<MainPage> {
               ListTile(
                 title: Text('Создать рассчет'),
                 onTap: (){
-                  if(MainPage.controller.position != 0){
-                    MainPage.controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                  if(controller.position != 0){
+                    controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
                   };
                   Navigator.pop(context);
                 },
@@ -82,8 +84,8 @@ class _MainPageState extends State<MainPage> {
               ListTile(
                 title: Text('История рассчетов'),
                 onTap: (){
-                  if(MainPage.controller.position != 1){
-                    MainPage.controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                  if(controller.position != 1){
+                    controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
                   };
                   Navigator.pop(context);
                 },
@@ -123,13 +125,12 @@ class _MainPageState extends State<MainPage> {
                   child: Container(
                     height: 760,
                     child: PageView(
-                      controller: MainPage.controller,
-                      scrollDirection: Axis.horizontal,
+                      controller: controller,
+                      scrollDirection: Axis.vertical,
                       physics: const NeverScrollableScrollPhysics(),
                       children:[
-                        UploadPage(),
+                        CalcPage(),
                         HistoryPage(),
-                        UploadTablePage(MainPage.table),
                       ],
                     ),
                   ),

@@ -4,16 +4,21 @@ import 'package:osh_main_build/pages/mainpage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:excel/excel.dart';
+
+import 'calcpage.dart';
 class UploadPage extends StatefulWidget {
-  UploadPage({Key? key}) : super(key: key);
+  FilePickerResult? pickedFile;
+  UploadPage(this.pickedFile, {Key? key}) : super(key: key);
 
   @override
-  State<UploadPage> createState() => _UploadPageState();
+  State<UploadPage> createState() => _UploadPageState(pickedFile);
 }
 
 class _UploadPageState extends State<UploadPage> {
   FilePickerResult? pickedFile;
   String _text = 'uploadpage';
+
+  _UploadPageState(this.pickedFile);
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -85,7 +90,7 @@ class _UploadPageState extends State<UploadPage> {
                         )
                     ),
                       onPressed: (){
-                        MainPage.controller.animateToPage(2, duration: Duration(milliseconds: 700), curve: Curves.easeIn);
+                        CalcPage.controller.animateToPage(1, duration: Duration(milliseconds: 700), curve: Curves.easeIn);
                       },
                       child: const Text("Import"),
                   )
