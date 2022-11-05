@@ -1,7 +1,7 @@
-import 'package:excel/excel.dart';
 import 'package:osh_main_build/global.dart' as globals;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:spreadsheet_decoder/spreadsheet_decoder.dart';
 class UploadTablePage extends StatelessWidget {
   FilePickerResult? tableFile;
   UploadTablePage(FilePickerResult? table, {Key? key}) : super(key: key){
@@ -27,30 +27,41 @@ class UploadTable extends StatefulWidget {
 }
 
 class _UploadTableState extends State<UploadTable> {
-   FilePickerResult? table = globals.filePickerResult;
+   var table = globals.filePickerBytes;
   @override
   Widget build(BuildContext context) {
       return SingleChildScrollView(
         child: Table(
-          children: _getTableRowsFromExcel(table),
+          border: TableBorder.all(
+            color: Colors.black
+          ),
+          children: _getTableColumnsFromExcel(table),
         ),
       );
     }
   }
-  List<TableRow> _getTableRowsFromExcel(FilePickerResult? tableFile){
+  List<TableRow> _getTableColumnsFromExcel(var bytes){
     List<TableRow> tableRows = [];
-    if (tableFile != null) {
-      var bytes = tableFile.files.single.bytes;
-      var excel = Excel.decodeBytes(bytes!);
+    if (bytes != null) {
+      var excel = SpreadsheetDecoder.decodeBytes(bytes!.toList(), update: true);
       for (var table in excel.tables.keys) {
         for (var row in excel.tables[table]!.rows) {
-          tableRows.add(TableRow(
-            children: [
-              TableCell(
-                  child: Text(row.toString())
+          List<TableCell> RowCells = [];
+          for(var cell in row){
+            RowCells.add(
+                  TableCell(
+                      child: Center(
+                          child: Text(
+                              cell.toString(),
+                              style: const TextStyle(
+                                fontSize: 22
+                              )
+                          )
+                )
               )
-            ]
-          ));
+            );
+          }
+          tableRows.add(TableRow(children: RowCells));
         }
       }
     }

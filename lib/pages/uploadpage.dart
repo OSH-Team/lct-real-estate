@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:osh_main_build/global.dart' as globals;
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:osh_main_build/pages/mainpage.dart';
 import 'package:osh_main_build/pages/uploadtablepage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
-import 'package:excel/excel.dart';
 
 import 'calcpage.dart';
 class UploadPage extends StatefulWidget {
@@ -32,31 +32,43 @@ class _UploadPageState extends State<UploadPage> {
         child: Column(
           children: [
             Container(
-              child: InkWell(
-                onTap: () async {
-                  await FilePicker.platform.pickFiles(
-                    type: FileType.custom,
-                    allowedExtensions: ['xlsx'],
-                    allowMultiple: false,
-                  ).then((value){
+              child: DropTarget(
+                onDragDone: (file){
+                  file.files.single.readAsBytes().then((value){
+                    globals.filePickerBytes = value;
                     setState(() {
-                      globals.filePickerResult = value;
-                      _text = globals.filePickerResult!.names.first!;
+                      _text = file.files.single.name;
                     });
                   });
                 },
-                child: Container(
-                  height: 451,
-                  width: 722,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Color(0x66666666)),
-                    borderRadius: BorderRadius.circular(30),
-                    color: Color(0xACACACAC),
-                  ),
-                  child: Center(
-                      child: Text(_text)
-                  ),
-                )
+                child: InkWell(
+                  onTap: () async {
+                    await FilePicker.platform.pickFiles(
+                      type: FileType.custom,
+                      allowedExtensions: ['xlsx'],
+                      allowMultiple: false,
+                    ).then((value){
+                      setState(() {
+                        globals.filePickerResult = value;
+                        FilePickerResult? table = globals.filePickerResult;
+                        globals.filePickerBytes = table!.files.single.bytes;
+                        _text = globals.filePickerResult!.names.first!;
+                      });
+                    });
+                  },
+                  child: Container(
+                    height: 451,
+                    width: 722,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0x66666666)),
+                      borderRadius: BorderRadius.circular(30),
+                      color: Color(0xACACACAC),
+                    ),
+                    child: Center(
+                        child: Text(_text)
+                    ),
+                  )
+                ),
               ),
             ),
             Container(

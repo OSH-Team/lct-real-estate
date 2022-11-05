@@ -6,6 +6,7 @@
 // @dart = 2.13
 // ignore_for_file: type=lint
 
+import 'package:desktop_drop/desktop_drop_web.dart';
 import 'package:device_info_plus_web/device_info_plus_web.dart';
 import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:flutter_web_auth_2/src/flutter_web_auth_2_web.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void registerPlugins([final Registrar? pluginRegistrar]) {
   final Registrar registrar = pluginRegistrar ?? webPluginRegistrar;
+  DesktopDropWeb.registerWith(registrar);
   DeviceInfoPlusPlugin.registerWith(registrar);
   FilePickerWeb.registerWith(registrar);
   FlutterWebAuth2Plugin.registerWith(registrar);
