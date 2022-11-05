@@ -18,7 +18,7 @@ class MainPage extends StatelessWidget {
     _checkAuth(context);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('RP'),
+          title: const Text('RightPrice'),
           backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
           actions: [
             Container(
@@ -35,6 +35,15 @@ class MainPage extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
+              UserAccountsDrawerHeader(
+                  accountName: Text('Gay'),
+                  accountEmail: Text('gay@gmail.com'),
+                  currentAccountPicture: CircleAvatar(
+                    child: ClipOval(
+                      child: Image.asset('andrey.png'),
+                    ),
+                  ),
+              ),
               ListTile(
                 title: Text('Создать рассчет'),
                 onTap: (){
@@ -59,10 +68,11 @@ class MainPage extends StatelessWidget {
               children:[
                 /*Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xE8E8E8E8),
-                    border: Border(
+                    color: const Color(0xD9D9D9D9),
+
+                    /*border: Border(
                       bottom: BorderSide(color: Color(0x66666666)),
-                    ),
+                    ),*/
                   ),
 
                   child: Row(
@@ -83,7 +93,7 @@ class MainPage extends StatelessWidget {
                       color: const Color(0xD9D9D9D9)
                   ),
                   child: Container(
-                    height: 1024,
+                    height: 760,
                     child: PageView(
                       controller: controller,
                       scrollDirection: Axis.horizontal,
@@ -91,7 +101,7 @@ class MainPage extends StatelessWidget {
                       children:[
                         UploadPage(),
                         HistoryPage(),
-                        UploadTablePage(table)
+                        UploadTablePage(table),
                       ],
                     ),
                   ),
