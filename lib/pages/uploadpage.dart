@@ -111,7 +111,7 @@ class _UploadPageState extends State<UploadPage> {
                         )
                     ),
                       onPressed: (){
-                        if(globals.filePickerResult == null){
+                        if(globals.filePickerBytes == null){
                           _showExceptionDialog(context, 'null');
                         }
                         CalcPage.controller.animateToPage(1, duration: Duration(milliseconds: 700), curve: Curves.easeIn)
