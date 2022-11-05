@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'package:osh_main_build/main.dart';
 import 'package:sizer/sizer_ext.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:file_picker/file_picker.dart';
@@ -7,53 +8,54 @@ import 'package:osh_main_build/pages/historypage.dart';
 import 'package:osh_main_build/pages/uploadpage.dart';
 import 'package:osh_main_build/pages/uploadtablepage.dart';
 class MainPage extends StatelessWidget {
-  const MainPage(Account account, {Key? key}) : super(key: key);
+  MainPage(Account account, {Key? key}) : super(key: key);
   static PageController controller = PageController(
     initialPage: 0,
   );
   static FilePickerResult? table;
   @override
   Widget build(BuildContext context) {
+    _checkAuth(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('RP'),
-        backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
-        actions: [
-          Container(
-            margin: EdgeInsets.only(right: 40),
-            child: IconButton(
+        appBar: AppBar(
+          title: const Text('RP'),
+          backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
+          actions: [
+            Container(
+              margin: EdgeInsets.only(right: 40),
+              child: IconButton(
                 onPressed: (){},
                 icon: Image.asset('CircleContentPlace.png'),
                 iconSize: 40,
-            ),
-          )
-        ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            ListTile(
-              title: Text('Создать рассчет'),
-              onTap: (){
-                if(controller.position != 0){
-                  controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-                }
-              },
-            ),
-            ListTile(
-              title: Text('История рассчетов'),
-              onTap: (){
-                if(controller.position != 1){
-                  controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-                }
-              },
+              ),
             )
           ],
         ),
-      ),
-      body: SingleChildScrollView(
-       child: Column(
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              ListTile(
+                title: Text('Создать рассчет'),
+                onTap: (){
+                  if(controller.position != 0){
+                    controller.animateToPage(0, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                  }
+                },
+              ),
+              ListTile(
+                title: Text('История рассчетов'),
+                onTap: (){
+                  if(controller.position != 1){
+                    controller.animateToPage(1, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                  }
+                },
+              )
+            ],
+          ),
+        ),
+        body: SingleChildScrollView(
+            child: Column(
               children:[
                 /*Container(
                   decoration: BoxDecoration(
@@ -76,28 +78,37 @@ class MainPage extends StatelessWidget {
                       ],
                   ),
                 ),*/
-                 Container(
-                    decoration: BoxDecoration(
+                Container(
+                  decoration: BoxDecoration(
                       color: const Color(0xD9D9D9D9)
+                  ),
+                  child: Container(
+                    height: 1024,
+                    child: PageView(
+                      controller: controller,
+                      scrollDirection: Axis.horizontal,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children:[
+                        UploadPage(),
+                        HistoryPage(),
+                        UploadTablePage(table)
+                      ],
                     ),
-                    child: Container(
-                      height: 1024,
-                      child: PageView(
-                        controller: controller,
-                        scrollDirection: Axis.horizontal,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children:[
-                          UploadPage(),
-                          HistoryPage(),
-                          UploadTablePage(table)
-                         ],
-                      ),
-                    ),
-                  )
+                  ),
+                )
 
               ],
-          )
-      )
+            )
+        )
     );
+  }
+  _checkAuth(context) async{
+    try{
+      var res = await account.get();
+      print(res);
+    }catch(e){
+      print(e);
+      Navigator.pushNamedAndRemoveUntil(context, "/auth", (route) => false);
+    }
   }
 }
