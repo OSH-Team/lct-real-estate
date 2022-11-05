@@ -52,7 +52,8 @@ class MainPage extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
               children:[
                 /*Container(
                   decoration: BoxDecoration(
@@ -95,6 +96,7 @@ class MainPage extends StatelessWidget {
                   )
               ],
           )
+      )
     );
   }
 }

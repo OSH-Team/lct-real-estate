@@ -9,9 +9,9 @@ class UploadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-
+      child: FittedBox(
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 50),
+        margin: EdgeInsets.all(50),
         child: Column(
           children: [
             Container(
@@ -81,6 +81,7 @@ class UploadPage extends StatelessWidget {
           ],
         ),
       ),
+      )
     );
   }
 }
