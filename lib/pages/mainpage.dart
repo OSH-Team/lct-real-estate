@@ -7,7 +7,7 @@ import 'package:osh_main_build/pages/historypage.dart';
 import 'package:osh_main_build/pages/uploadpage.dart';
 import 'package:osh_main_build/pages/uploadtablepage.dart';
 class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage(Account account, {Key? key}) : super(key: key);
   static PageController controller = PageController(
     initialPage: 0,
   );
