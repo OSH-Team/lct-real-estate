@@ -192,7 +192,7 @@ class RegisterPage extends StatelessWidget {
                                     _showExceptionDialog(context, e);
                                   }
                                 },
-                                child: const Text("Зарегестрироваться")
+                                child: const Text("Зарегистрироваться")
                             ),
                           )
                         ],

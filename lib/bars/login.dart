@@ -104,7 +104,7 @@ class LoginPage extends StatelessWidget {
                                         duration: const Duration(milliseconds: 700),
                                         curve: Curves.easeIn);
                                   },
-                                  child: const Text("Зарегестрироваться")
+                                  child: const Text("Зарегистрироваться")
                               ),
                             ),
                             Container(
