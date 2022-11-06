@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:sizer/sizer.dart';
 import 'package:osh_main_build/pages/auth.dart';
+import 'package:osh_main_build/global.dart' as globals;
 import 'package:osh_main_build/pages/mainpage.dart';
 Client client = Client()
-    .setEndpoint('http://95.79.97.140/v1') // Your Appwrite Endpoint
-    .setProject('RightPrice')         // Your project ID
+    .setEndpoint(globals.backendEndpoint) // Your Appwrite Endpoint
+    .setProject(globals.backendProject)         // Your project ID
     .setSelfSigned(status: true);        // For self signed certificates, only use for development
 Account account = Account(client);
 
@@ -23,9 +24,6 @@ class RightPrice extends StatelessWidget {
           return OrientationBuilder(
               builder: (context, orientation){
                 SizerUtil().init(constraints, orientation);
-                client
-                    .setEndpoint('http://95.79.97.140/v1') // Your API Endpoint
-                    .setProject('RightPrice');
                 return MaterialApp(
                   home: MainPage(account),
                   routes: {
