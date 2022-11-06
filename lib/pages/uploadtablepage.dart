@@ -101,11 +101,22 @@ class _UploadTableState extends State<UploadTable> {
    var table = globals.filePickerBytes;
   @override
   Widget build(BuildContext context) {
-      return SingleChildScrollView(
-        child: Table(
-          border: TableBorder(horizontalInside: BorderSide(color: Colors.black,width: 0.5)),
-          children: _getTableRowsFromExcel(table),
-        ),
+      List<TableRow> tableRows = _getTableRowsFromExcel(table);
+      tableRows.removeAt(0);
+      return Column(
+        children: [
+          Table(
+            children: [_getTableRowsFromExcel(table).first],
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Table(
+                border: TableBorder(horizontalInside: BorderSide(color: Colors.black,width: 0.5)),
+                children: tableRows,
+              ),
+            ),
+          ),
+        ],
       );
     }
   }

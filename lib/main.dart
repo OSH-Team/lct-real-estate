@@ -4,6 +4,7 @@ import 'package:sizer/sizer.dart';
 import 'package:osh_main_build/pages/auth.dart';
 import 'package:osh_main_build/global.dart' as globals;
 import 'package:osh_main_build/pages/mainpage.dart';
+import 'package:starflut/starflut.dart';
 Client client = Client()
     .setEndpoint(globals.backendEndpoint) // Your Appwrite Endpoint
     .setProject(globals.backendProject)         // Your project ID
@@ -12,6 +13,7 @@ Account account = Account(client);
 
 void main() {
   runApp(const RightPrice());
+  Starflut.loadLibrary('cianparser');
 }
 
 class RightPrice extends StatelessWidget {
