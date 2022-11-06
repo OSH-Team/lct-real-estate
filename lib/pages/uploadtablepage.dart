@@ -12,16 +12,40 @@ class UploadTablePage extends StatelessWidget {
 
     return Center(
       child: FittedBox(
-        child: Container(
-          margin: EdgeInsets.all(50),
-          height: 600,
-          width: 1420,
-          decoration: BoxDecoration(
-            border: Border.all(color: Color(0x66666666)),
-            borderRadius: BorderRadius.circular(30),
-            //color: Color(0xACACACAC),
-          ),
-          child: UploadTable(),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(50),
+              height: 600,
+              width: 1420,
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0x66666666)),
+                borderRadius: BorderRadius.circular(30),
+                //color: Color(0xACACACAC),
+              ),
+              child: UploadTable(),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 50),
+              child: TextButton(
+                child: Text('Выполнить расчет'),
+                style: TextButton.styleFrom(
+                    side: BorderSide(
+                        color: const Color.fromRGBO(102, 102, 102, 0.5)
+                    ),
+                    primary: Color.fromRGBO(217, 217, 217, 1),
+                    backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
+                    fixedSize: const Size(400, 57),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+
+                    )
+                ),
+                onPressed: (){},
+
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -46,12 +70,12 @@ class _UploadTableState extends State<UploadTable> {
       return SingleChildScrollView(
         child: Table(
           border: TableBorder(horizontalInside: BorderSide(color: Colors.black,width: 0.5)),
-          children: _getTableColumnsFromExcel(table),
+          children: _getTableRowsFromExcel(table),
         ),
       );
     }
   }
-  List<TableRow> _getTableColumnsFromExcel(var bytes){
+  List<TableRow> _getTableRowsFromExcel(var bytes){
     List<TableRow> tableRows = [];
     if (bytes != null) {
       var excel = SpreadsheetDecoder.decodeBytes(bytes!.toList(), update: true);
@@ -73,7 +97,7 @@ class _UploadTableState extends State<UploadTable> {
             RowCells.add(
                   TableCell(
                       child: Container(
-                          constraints: BoxConstraints(minWidth: 200,minHeight: 80),
+                          constraints: BoxConstraints(minWidth: 200, minHeight: 80,),
                           decoration: BoxDecoration(
                             //border: Border.all(color: Colors.black),
                             //borderRadius: BorderRadius.circular(15)
