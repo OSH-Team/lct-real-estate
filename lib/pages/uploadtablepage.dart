@@ -9,8 +9,45 @@ class UploadTablePage extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: UploadTable(),
+
+    return Center(
+      child: FittedBox(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(50),
+              height: 600,
+              width: 1420,
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0x66666666)),
+                borderRadius: BorderRadius.circular(30),
+                //color: Color(0xACACACAC),
+              ),
+              child: UploadTable(),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 50),
+              child: TextButton(
+                child: Text('Выполнить расчет'),
+                style: TextButton.styleFrom(
+                    side: BorderSide(
+                        color: const Color.fromRGBO(102, 102, 102, 0.5)
+                    ),
+                    primary: Color.fromRGBO(217, 217, 217, 1),
+                    backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
+                    fixedSize: const Size(400, 57),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+
+                    )
+                ),
+                onPressed: (){},
+
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
@@ -32,29 +69,47 @@ class _UploadTableState extends State<UploadTable> {
   Widget build(BuildContext context) {
       return SingleChildScrollView(
         child: Table(
-          border: TableBorder.all(
-            color: Colors.black
-          ),
-          children: _getTableColumnsFromExcel(table),
+          border: TableBorder(horizontalInside: BorderSide(color: Colors.black,width: 0.5)),
+          children: _getTableRowsFromExcel(table),
         ),
       );
     }
   }
-  List<TableRow> _getTableColumnsFromExcel(var bytes){
+  List<TableRow> _getTableRowsFromExcel(var bytes){
     List<TableRow> tableRows = [];
     if (bytes != null) {
       var excel = SpreadsheetDecoder.decodeBytes(bytes!.toList(), update: true);
       for (var table in excel.tables.keys) {
         for (var row in excel.tables[table]!.rows) {
           List<TableCell> RowCells = [];
+          RowCells.add(
+              TableCell(
+                  child: Container(
+                      constraints: BoxConstraints(minWidth: 320,minHeight: 80),
+                      decoration: BoxDecoration(
+                        //border: Border.all(color: Colors.black)
+                      ),
+                      child: CheckBoxX()
+                  )
+              )
+          );
           for(var cell in row){
             RowCells.add(
                   TableCell(
-                      child: Center(
-                          child: Text(
-                              cell.toString(),
-                              style: const TextStyle(
-                                fontSize: 22
+                      child: Container(
+                          constraints: BoxConstraints(minWidth: 200, minHeight: 80,),
+                          decoration: BoxDecoration(
+                            //border: Border.all(color: Colors.black),
+                            //borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Center(
+                              child: Text(
+                                  cell.toString(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+
+                                      fontSize: 14
+                                  )
                               )
                           )
                 )
@@ -93,4 +148,25 @@ class _UploadTableState extends State<UploadTable> {
        },
      );
    }
+class CheckBoxX extends StatefulWidget {
+  const CheckBoxX({Key? key}) : super(key: key);
+
+  @override
+  State<CheckBoxX> createState() => _CheckBoxXState();
+}
+
+class _CheckBoxXState extends State<CheckBoxX> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+        value: isChecked, onChanged: (bool? value) {
+          setState(() {
+          isChecked = value!;
+          });
+        }
+    );
+  }
+}
 
