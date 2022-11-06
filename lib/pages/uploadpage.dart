@@ -20,7 +20,7 @@ class UploadPage extends StatefulWidget {
 
 class _UploadPageState extends State<UploadPage> {
   var pickedFile;
-  String _text = 'Перетащите вашу талицу в это поле';
+  String _text = 'Перетащите вашу таблицу в это поле или нажмите на него';
 
   _UploadPageState(this.pickedFile);
   @override

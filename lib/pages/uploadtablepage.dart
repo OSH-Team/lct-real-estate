@@ -1,6 +1,7 @@
 import 'package:osh_main_build/global.dart' as globals;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:osh_main_build/pages/calcpage.dart';
 import 'package:spreadsheet_decoder/spreadsheet_decoder.dart';
 class UploadTablePage extends StatelessWidget {
   FilePickerResult? tableFile;
@@ -27,22 +28,55 @@ class UploadTablePage extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.only(bottom: 50),
-              child: TextButton(
-                child: Text('Выполнить расчет'),
-                style: TextButton.styleFrom(
-                    side: BorderSide(
-                        color: const Color.fromRGBO(102, 102, 102, 0.5)
+              height: 56,
+              width: 900,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: TextButton(
+                      child: Text('Назад'),
+                      style: TextButton.styleFrom(
+                          side: BorderSide(
+                              color: const Color.fromRGBO(102, 102, 102, 0.5)
+                          ),
+                          primary: Colors.black,
+                          backgroundColor: const Color.fromRGBO(172, 172, 172, 1),
+                          fixedSize: const Size(400, 57),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+
+                          ),
+                      ),
+                      onPressed: (){
+                        CalcPage.controller.previousPage(
+                            duration: const Duration(
+                                milliseconds: 700),
+                            curve: Curves.easeIn);
+                      },
+
                     ),
-                    primary: Color.fromRGBO(217, 217, 217, 1),
-                    backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
-                    fixedSize: const Size(400, 57),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                  ),
+                  Container(
+                    child: TextButton(
+                      child: Text('Выполнить расчет'),
+                      style: TextButton.styleFrom(
+                          side: BorderSide(
+                              color: const Color.fromRGBO(102, 102, 102, 0.5)
+                          ),
+                          primary: Color.fromRGBO(217, 217, 217, 1),
+                          backgroundColor: const Color.fromRGBO(140, 28, 4, 1),
+                          fixedSize: const Size(400, 57),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
 
-                    )
-                ),
-                onPressed: (){},
+                          )
+                      ),
+                      onPressed: (){},
 
+                    ),
+                  ),
+                ],
               ),
             )
           ],
